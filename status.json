@@ -1,1 +1,55 @@
-{}
+{
+  "Original Columbus Turkey Trot": {
+    "matched_keywords": [
+      "turkey trot",
+      "register",
+      "registration"
+    ],
+    "registration_open": true,
+    "next_year_found": false
+  },
+  "Columbus 10K": {
+    "matched_keywords": [
+      "register",
+      "registration"
+    ],
+    "registration_open": true,
+    "next_year_found": false
+  },
+  "Arnold 5K": {
+    "matched_keywords": [
+      "arnold 5k",
+      "register",
+      "registration"
+    ],
+    "registration_open": true,
+    "next_year_found": true
+  },
+  "Arnold Pump & Run": {
+    "matched_keywords": [
+      "pump",
+      "run",
+      "register"
+    ],
+    "registration_open": true,
+    "next_year_found": true
+  },
+  "OhioHealth Capital City Half Marathon": {
+    "matched_keywords": [
+      "capital city",
+      "register",
+      "registration"
+    ],
+    "registration_open": true,
+    "next_year_found": true
+  },
+  "Ohio State 4 Miler": {
+    "matched_keywords": [
+      "ohio state 4 miler",
+      "register",
+      "registration"
+    ],
+    "registration_open": true,
+    "next_year_found": true
+  }
+}
