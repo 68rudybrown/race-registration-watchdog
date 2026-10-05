@@ -1,56 +1,48 @@
 [
   {
     "name": "Original Columbus Turkey Trot",
-    "organizer_url": "https://runsignup.com",
+    "organizer_url": "https://columbusturkeytrot.org/",
     "keywords": [
       "turkey trot",
-      "register",
-      "registration"
+      "registration",
+      "register"
     ]
   },
   {
     "name": "Columbus 10K",
-    "organizer_url": "https://runsignup.com",
+    "organizer_url": "https://www.columbus10k.com/",
     "keywords": [
       "columbus 10k",
-      "register",
-      "registration"
+      "registration",
+      "register"
     ]
   },
   {
     "name": "Arnold 5K",
-    "organizer_url": "https://m3ssports.com",
+    "organizer_url": "https://arnold5k.com/",
     "keywords": [
       "arnold 5k",
-      "register",
-      "registration"
-    ]
-  },
-  {
-    "name": "Arnold Pump & Run",
-    "organizer_url": "https://m3ssports.com",
-    "keywords": [
-      "pump",
-      "run",
+      "registration",
       "register"
     ]
   },
   {
     "name": "OhioHealth Capital City Half Marathon",
-    "organizer_url": "https://m3ssports.com",
+    "organizer_url": "https://capitalcityhalfmarathon.com/",
     "keywords": [
       "capital city",
-      "register",
-      "registration"
+      "half marathon",
+      "registration",
+      "register"
     ]
   },
   {
     "name": "Ohio State 4 Miler",
-    "organizer_url": "https://m3ssports.com",
+    "organizer_url": "https://ohiostatefourmiler.com/",
     "keywords": [
       "ohio state 4 miler",
-      "register",
-      "registration"
+      "registration",
+      "register"
     ]
   }
 ]
