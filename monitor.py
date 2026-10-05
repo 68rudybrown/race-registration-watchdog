@@ -71,11 +71,19 @@ for race in races:
 
         elif previous != found:
 
-            print(
-                f"CHANGE DETECTED: "
-                f"{name} "
-                f"{previous} -> {found}"
-            )
+    message = (
+        f"Race Monitor Alert\n\n"
+        f"Race: {name}\n"
+        f"Previous Status: {previous}\n"
+        f"Current Status: {found}"
+    )
+
+    print(message)
+
+    send_email(
+        subject=f"Race Alert - {name}",
+        body=message
+    )
 
         else:
 
