@@ -95,8 +95,3 @@ with open(STATUS_FILE, "w") as f:
         f,
         indent=2
     )
-
-send_email(
-    "Race Monitor Test",
-    "If you received this email, GitHub Actions email is working."
-)
