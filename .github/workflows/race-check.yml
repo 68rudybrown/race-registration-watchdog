@@ -1,41 +1,39 @@
 name: Race Check
 
 on:
-
   workflow_dispatch:
 
   schedule:
     - cron: '0 11 * * *'
 
 jobs:
-
-  check-races:*
+  check-races:
     runs-on: ubuntu-latest
 
-    p*rmissions:
+    permissions:
       contents: write
 
-*   steps:
+    steps:
+      - uses: actions/checkout@v4
 
-      - uses: actions/c*eckout@v4
-
-      - uses: actions/s*tup-python@v5
+      - uses: actions/setup-python@v5
         with:
-      *   python-version: '3.11'
+          python-version: '3.11'
 
-      -*run: pip install requests
+      - run: pip install requests
 
-- run: python monitor.py
-  env:
-    EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-    EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      - run: python monitor.py
+        env:
+          EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+
       - name: Save Status File
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
-        run: *
-          git config user.name gi*hub-actions
-          git config u*er.email github-actions@github.com*
           git add status.json
 
-  *       git diff --cached --quiet |* git commit -m "Update status"
+          git diff --cached --quiet || git commit -m "Update status"
 
-  *       git push
+          git push
