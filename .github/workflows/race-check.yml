@@ -25,9 +25,11 @@ jobs:
 
       -*run: pip install requests
 
-      -*run: python monitor.py
-
-      - na*e: Save Status File
+- run: python monitor.py
+  env:
+    EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+    EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      - name: Save Status File
 
         run: *
           git config user.name gi*hub-actions
