@@ -5,7 +5,7 @@ import smtplib
 from email.message import EmailMessage
 
 def send_email(subject, body):
- 
+
 sender = os.environ["EMAIL_ADDRESS"]
 password = os.environ["EMAIL_PASSWORD"]
  
