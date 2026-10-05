@@ -38,12 +38,12 @@ def send_email(subject, body):
         smtp.send_message(msg)
 
 
-with open("races.json") as f:
+with open("races.json", "r") as f:
     races = json.load(f)
 
 if os.path.exists(STATUS_FILE):
 
-    with open(STATUS_FILE) as f:
+    with open(STATUS_FILE, "r") as f:
         previous_status = json.load(f)
 
 else:
@@ -70,6 +70,8 @@ for race in races:
             }
         )
 
+        response.raise_for_status()
+
         page_text = response.text.lower()
 
         matched_keywords = []
@@ -82,9 +84,14 @@ for race in races:
         registration_keywords = [
             "register now",
             "registration open",
+            "registration is open",
             "sign up",
             "register today",
-            "register"
+            "register",
+            "early bird",
+            "entry fee",
+            "pricing",
+            "$"
         ]
 
         registration_open = any(
@@ -92,13 +99,26 @@ for race in races:
             for keyword in registration_keywords
         )
 
+        year_matches = [
+            str(CURRENT_YEAR),
+            str(NEXT_YEAR),
+            str(NEXT_YEAR + 1)
+        ]
+
+        year_found = any(
+            year in page_text
+            for year in year_matches
+        )
+
         next_year_found = (
             str(NEXT_YEAR) in page_text
         )
 
         current_status[name] = {
+            "url": url,
             "matched_keywords": matched_keywords,
             "registration_open": registration_open,
+            "year_found": year_found,
             "next_year_found": next_year_found
         }
 
@@ -110,7 +130,7 @@ for race in races:
                 f"First observation for {name}"
             )
 
-        elif previous != current_status[name]:
+        elif previous != current_status[name\]:
 
             message = f"""
 Race Monitor Alert
@@ -118,14 +138,16 @@ Race Monitor Alert
 Race:
 {name}
 
+Website:
+{url}
+
 Previous State:
+
 {json.dumps(previous, indent=2)}
 
 Current State:
-{json.dumps(current_status[name], indent=2)}
 
-Organizer:
-{url}
+{json.dumps(current_status[name], indent=2)}
 """
 
             print(message)
