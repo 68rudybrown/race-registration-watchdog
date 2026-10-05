@@ -1,55 +1,48 @@
-{
-  "Original Columbus Turkey Trot": {
-    "matched_keywords": [
+[
+  {
+    "name": "Original Columbus Turkey Trot",
+    "organizer_url": "https://columbusturkeytrot.org/",
+    "keywords": [
       "turkey trot",
-      "register",
-      "registration"
-    ],
-    "registration_open": true,
-    "next_year_found": false
-  },
-  "Columbus 10K": {
-    "matched_keywords": [
-      "register",
-      "registration"
-    ],
-    "registration_open": true,
-    "next_year_found": false
-  },
-  "Arnold 5K": {
-    "matched_keywords": [
-      "arnold 5k",
-      "register",
-      "registration"
-    ],
-    "registration_open": true,
-    "next_year_found": true
-  },
-  "Arnold Pump & Run": {
-    "matched_keywords": [
-      "pump",
-      "run",
+      "registration",
       "register"
-    ],
-    "registration_open": true,
-    "next_year_found": true
+    ]
   },
-  "OhioHealth Capital City Half Marathon": {
-    "matched_keywords": [
+  {
+    "name": "Columbus 10K",
+    "organizer_url": "https://www.columbus10k.com/",
+    "keywords": [
+      "columbus 10k",
+      "registration",
+      "register"
+    ]
+  },
+  {
+    "name": "Arnold 5K",
+    "organizer_url": "https://arnold5k.com/",
+    "keywords": [
+      "arnold 5k",
+      "registration",
+      "register"
+    ]
+  },
+  {
+    "name": "OhioHealth Capital City Half Marathon",
+    "organizer_url": "https://capitalcityhalfmarathon.com/",
+    "keywords": [
       "capital city",
-      "register",
-      "registration"
-    ],
-    "registration_open": true,
-    "next_year_found": true
+      "half marathon",
+      "registration",
+      "register"
+    ]
   },
-  "Ohio State 4 Miler": {
-    "matched_keywords": [
+  {
+    "name": "Ohio State 4 Miler",
+    "organizer_url": "https://ohiostatefourmiler.com/",
+    "keywords": [
       "ohio state 4 miler",
-      "register",
-      "registration"
-    ],
-    "registration_open": true,
-    "next_year_found": true
+      "registration",
+      "register"
+    ]
   }
-}
+]
