@@ -5,29 +5,28 @@ import smtplib
 from email.message import EmailMessage
 
 def send_email(subject, body):
+    sender = os.environ["EMAIL_ADDRESS"]
+    password = os.environ["EMAIL_PASSWORD"]
 
-sender = os.environ["EMAIL_ADDRESS"]
-password = os.environ["EMAIL_PASSWORD"]
- 
-msg = EmailMessage()
- 
-msg["Subject"] = subject
-msg["From"] = sender
-msg["To"] = sender
- 
-msg.set_content(body)
- 
-with smtplib.SMTP_SSL(
-"smtp.gmail.com",
-465
-) as smtp:
- 
-smtp.login(
-sender,
-password
-)
- 
-smtp.send_message(msg)
+    msg = EmailMessage()
+
+    msg["Subject"] = subject
+    msg["From"] = sender
+    msg["To"] = sender
+
+    msg.set_content(body)
+
+    with smtplib.SMTP_SSL(
+        "smtp.gmail.com",
+        465
+    ) as smtp:
+
+        smtp.login(
+            sender,
+            password
+        )
+
+        smtp.send_message(msg)
 
 STATUS_FILE = "status.json"
 
