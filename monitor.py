@@ -2,9 +2,18 @@ import json
 import os
 import requests
 import smtplib
+
+from datetime import datetime
 from email.message import EmailMessage
 
+STATUS_FILE = "status.json"
+
+CURRENT_YEAR = datetime.now().year
+NEXT_YEAR = CURRENT_YEAR + 1
+
+
 def send_email(subject, body):
+
     sender = os.environ["EMAIL_ADDRESS"]
     password = os.environ["EMAIL_PASSWORD"]
 
@@ -28,15 +37,17 @@ def send_email(subject, body):
 
         smtp.send_message(msg)
 
-STATUS_FILE = "status.json"
 
 with open("races.json") as f:
     races = json.load(f)
 
 if os.path.exists(STATUS_FILE):
+
     with open(STATUS_FILE) as f:
         previous_status = json.load(f)
+
 else:
+
     previous_status = {}
 
 current_status = {}
@@ -45,8 +56,9 @@ for race in races:
 
     name = race["name"]
     url = race["organizer_url"]
+    keywords = race["keywords"]
 
-    print(f"\nChecking: {name}")
+    print(f"\nChecking {name}")
 
     try:
 
@@ -58,46 +70,88 @@ for race in races:
             }
         )
 
-        text = response.text.lower()
+        page_text = response.text.lower()
 
-        found = name.lower() in text
+        matched_keywords = []
 
-        current_status[name] = found
+        for keyword in keywords:
+
+            if keyword.lower() in page_text:
+                matched_keywords.append(keyword)
+
+        registration_keywords = [
+            "register now",
+            "registration open",
+            "sign up",
+            "register today",
+            "register"
+        ]
+
+        registration_open = any(
+            keyword in page_text
+            for keyword in registration_keywords
+        )
+
+        next_year_found = (
+            str(NEXT_YEAR) in page_text
+        )
+
+        current_status[name] = {
+            "matched_keywords": matched_keywords,
+            "registration_open": registration_open,
+            "next_year_found": next_year_found
+        }
 
         previous = previous_status.get(name)
 
         if previous is None:
-            print(f"First observation: {found}")
 
-        elif previous != found:
+            print(
+                f"First observation for {name}"
+            )
 
-    message = (
-        f"Race Monitor Alert\n\n"
-        f"Race: {name}\n"
-        f"Previous Status: {previous}\n"
-        f"Current Status: {found}"
-    )
+        elif previous != current_status[name\]:
 
-    print(message)
+            message = f"""
+Race Monitor Alert
 
-    send_email(
-        subject=f"Race Alert - {name}",
-        body=message
-    )
+Race:
+{name}
+
+Previous State:
+{json.dumps(previous, indent=2)}
+
+Current State:
+{json.dumps(current_status[name], indent=2)}
+
+Organizer:
+{url}
+"""
+
+            print(message)
+
+            send_email(
+                subject=f"Race Alert - {name}",
+                body=message
+            )
 
         else:
 
             print(
-                f"No change: {found}"
+                f"No change detected for {name}"
             )
 
     except Exception as e:
 
         print(
-            f"ERROR: {name} - {e}"
+            f"ERROR checking {name}: {e}"
         )
 
-with open(STATUS_FILE, "w") as f:
+with open(
+    STATUS_FILE,
+    "w"
+) as f:
+
     json.dump(
         current_status,
         f,
