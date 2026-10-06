@@ -13,7 +13,6 @@ NEXT_YEAR = CURRENT_YEAR + 1
 
 
 def send_email(subject, body):
-
     sender = os.environ["EMAIL_ADDRESS"]
     password = os.environ["EMAIL_PASSWORD"]
 
@@ -25,16 +24,8 @@ def send_email(subject, body):
 
     msg.set_content(body)
 
-    with smtplib.SMTP_SSL(
-        "smtp.gmail.com",
-        465
-    ) as smtp:
-
-        smtp.login(
-            sender,
-            password
-        )
-
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(sender, password)
         smtp.send_message(msg)
 
 
@@ -42,12 +33,9 @@ with open("races.json", "r") as f:
     races = json.load(f)
 
 if os.path.exists(STATUS_FILE):
-
     with open(STATUS_FILE, "r") as f:
         previous_status = json.load(f)
-
 else:
-
     previous_status = {}
 
 current_status = {}
@@ -65,9 +53,7 @@ for race in races:
         response = requests.get(
             url,
             timeout=30,
-            headers={
-                "User-Agent": "Mozilla/5.0"
-            }
+            headers={"User-Agent": "Mozilla/5.0"}
         )
 
         response.raise_for_status()
@@ -77,7 +63,6 @@ for race in races:
         matched_keywords = []
 
         for keyword in keywords:
-
             if keyword.lower() in page_text:
                 matched_keywords.append(keyword)
 
@@ -110,9 +95,7 @@ for race in races:
             for year in year_matches
         )
 
-        next_year_found = (
-            str(NEXT_YEAR) in page_text
-        )
+        next_year_found = str(NEXT_YEAR) in page_text
 
         current_status[name] = {
             "url": url,
@@ -126,9 +109,7 @@ for race in races:
 
         if previous is None:
 
-            print(
-                f"First observation for {name}"
-            )
+            print(f"First observation for {name}")
 
         elif previous != current_status[name\]:
 
@@ -159,21 +140,13 @@ Current State:
 
         else:
 
-            print(
-                f"No change detected for {name}"
-            )
+            print(f"No change detected for {name}")
 
     except Exception as e:
 
-        print(
-            f"ERROR checking {name}: {e}"
-        )
+        print(f"ERROR checking {name}: {e}")
 
-with open(
-    STATUS_FILE,
-    "w"
-) as f:
-
+with open(STATUS_FILE, "w") as f:
     json.dump(
         current_status,
         f,
