@@ -1,1 +1,47 @@
-{}
+{
+  "Columbus 10K": {
+    "url": "https://www.columbus10k.com/",
+    "matched_keywords": [
+      "columbus 10k",
+      "registration",
+      "register"
+    ],
+    "registration_open": true,
+    "year_found": true,
+    "next_year_found": true
+  },
+  "Arnold 5K": {
+    "url": "https://arnold5k.com/",
+    "matched_keywords": [
+      "arnold 5k",
+      "registration",
+      "register"
+    ],
+    "registration_open": true,
+    "year_found": true,
+    "next_year_found": true
+  },
+  "OhioHealth Capital City Half Marathon": {
+    "url": "https://capitalcityhalfmarathon.com/",
+    "matched_keywords": [
+      "capital city",
+      "half marathon",
+      "registration",
+      "register"
+    ],
+    "registration_open": true,
+    "year_found": true,
+    "next_year_found": true
+  },
+  "Ohio State 4 Miler": {
+    "url": "https://ohiostatefourmiler.com/",
+    "matched_keywords": [
+      "ohio state 4 miler",
+      "registration",
+      "register"
+    ],
+    "registration_open": true,
+    "year_found": true,
+    "next_year_found": true
+  }
+}
