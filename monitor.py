@@ -111,7 +111,7 @@ for race in races:
 
             print(f"First observation for {name}")
 
-        elif previous != current_status[name\]:
+        elif previous != current_status[name]:
 
             message = f"""
 Race Monitor Alert
